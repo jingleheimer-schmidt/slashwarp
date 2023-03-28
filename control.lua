@@ -1,16 +1,4 @@
 
----drawp some smoke at the player location
----@param player LuaPlayer
-local function draw_smoke(player)
-    local surface = player.surface
-    surface.create_trivial_smoke({name = "train-smoke", position = player.position})
-    surface.create_trivial_smoke({name = "train-smoke", position = player.position})
-    surface.create_trivial_smoke({name = "train-smoke", position = player.position})
-    surface.create_trivial_smoke({name = "train-smoke", position = player.position})
-    surface.create_trivial_smoke({name = "train-smoke", position = player.position})
-    surface.create_trivial_smoke({name = "train-smoke", position = player.position})
-end
-
 ---begin the warping process
 ---@param command CustomCommandData
 local function initiate_warp(command)
@@ -61,8 +49,14 @@ local function initiate_warp(command)
     end
     global.entity_destroyed_registrations = global.entity_destroyed_registrations or {}
     global.entity_destroyed_registrations[script.register_on_entity_destroyed(player_rocket)] = player_index
-    draw_smoke(player)
+    for i = 1, 10 do
+        player.surface.create_trivial_smoke({name = "train-smoke", position = player.position}) 
+    end
     player.teleport(validated_position, player.surface)
+    for i = 1, 10 do
+        player.surface.create_trivial_smoke({name = "train-smoke", position = player.position}) 
+    end
+    local transfer_alt_mode = player.game_view_settings.show_entity_info
     player.set_controller{
         type = defines.controllers.cutscene,
         waypoints = {
@@ -72,8 +66,8 @@ local function initiate_warp(command)
                 time_to_wait = 60 * 60 * 60,
             }
         },
-        -- start_position = {validated_position.x, validated_position.y},
     }
+    player.game_view_settings.show_entity_info = transfer_alt_mode
 end
 
 ---save a new warp location to global
