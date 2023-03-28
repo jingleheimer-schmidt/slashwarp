@@ -2,7 +2,7 @@
 	"name": "slashwarp",
 	"version": "0.0.1",
 	"title": "/warp",
-	"description": "save your current position as a waypoint and then use the /warp command to transform into a rocket and launch yourself towards the waypoint from anywhere on the map",
+	"description": "[font=default-bold]transform into a rocket and launch yourself across the map![/font]\nthis mod adds the following chat commands:\n[entity=compilatron] /warp <name> - launch yourself towards the named waypoint \n[entity=compilatron] /setwarp <name> - save your current position as a waypoint \n[entity=compilatron] /removewarp <name> - remove a saved waypoint \n[entity=compilatron] /listwarps - print a list of saved waypoints in chat",
 	"author": "asher_sky",
 	"dependencies": ["base >= 1.1.61"],
 	"factorio_version": "1.1"
